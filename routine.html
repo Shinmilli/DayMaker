@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Green Routine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    /* CSS code */
+    body {
+      background-color: #cdeccd; /* Light green background color */
+      font-family: Arial, sans-serif;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff; /* White container background */
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      color: #336633; /* Dark green heading color */
+      text-align: center;
+      margin-top: 0;
+      padding-top: 10px;
+    }
+    
+    p {
+      color: #555; /* Gray paragraph color */
+      line-height: 1.5;
+    }
+    
+    .highlight {
+      color: #336633; /* Dark green highlight color */
+      font-weight: bold;
+    }
+    
+    .routine-list {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+    
+    .routine-item {
+      margin-bottom: 10px;
+      cursor: move;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #fff; /* White background color for routine item */
+      border: 1px solid #ccc; /* Thin gray border */
+    }
+    
+    .routine-square {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: #ccc; /* Gray square color */
+      margin-right: 10px;
+    }
+  </style>
+  <script>
+    // JavaScript code
+    document.addEventListener("DOMContentLoaded", function() {
+      const routineItems = document.querySelectorAll(".routine-item");
+      
+      // Set up event listeners for drag and drop
+      routineItems.forEach(item => {
+        item.addEventListener("dragstart", dragStart);
+        item.addEventListener("dragover", dragOver);
+        item.addEventListener("dragenter", dragEnter);
+        item.addEventListener("dragleave", dragLeave);
+        item.addEventListener("drop", drop);
+        item.addEventListener("dragend", dragEnd);
+      });
+      
+      let draggedItem = null;
+      
+      function dragStart(event) {
+        draggedItem = this;
+        setTimeout(() => {
+          this.style.opacity = "0.5";
+        }, 0);
+      }
+      
+      function dragOver(event) {
+        event.preventDefault();
+      }
+      
+      function dragEnter(event) {
+        event.preventDefault();
+        this.style.backgroundColor = "#f0f0f0"; // Lighter gray when item is dragged over
+      }
+      
+      function dragLeave() {
+        this.style.backgroundColor = ""; // Remove background color when item is dragged out
+      }
+      
+      function drop() {
+        this.style.backgroundColor = ""; // Reset background color after dropping item
+        this.parentNode.insertBefore(draggedItem, this); // Swap positions of items
+      }
+      
+      function dragEnd() {
+        this.style.opacity = "1";
+      }
+    });
+  </script>
+</head>
+<body>
+  <!--navbar-->
+  <div class="navbar">
+    <a href="index.html" class="navbar-logo">Logo</a>
+    <a href="index.html">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="container">
+    <h1>My Daily Routine</h1>
+    <ul class="routine-list">
+      <li class="routine-item" draggable="true">
+        <span class="routine-square"></span>
+        아침에 집 근처의 공원에서 아침 산책
+      </li>
+      <li class="routine-item" draggable="true">
+        <span class="routine-square"></span>
+        그 후에는 녹색 스무디와 아보카도 토스트로 아침 식사
+      </li>
+      <li class="routine-item" draggable="true">
+        <span class="routine-square"></span>
+        웹 페이지 디자인 작업
+      </li>
+      <li class="routine-item" draggable="true">
+        <span class="routine-square"></span>
+        오후 샐러드로 식사
+      </li>
+      <li class="routine-item" draggable="true">
+        <span class="routine-square"></span>
+        요가
+      </li>
+      <li class="routine-item" draggable="true">
+        <span class="routine-square"></span>
+        독서 1시간
+      </li>
+      <li class="routine-item" draggable="true">
+        <span class="routine-square"></span>
+        일기쓰기
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
